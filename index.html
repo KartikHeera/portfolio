@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KARTIK HEERA :: ネットランナー — Software Engineer</title>
+<meta name="description" content="Portfolio of kartik Heera, Software Engineer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="scanline-overlay"></div>
+<div class="vignette"></div>
+
+<!-- side kana strips -->
+<div class="kana-strip kana-left mono">ネットランナー・システム・アクセス・エンジニア</div>
+<div class="kana-strip kana-right mono">起動・接続・実行・未来</div>
+
+<!-- ===== NAV ===== -->
+<nav class="navbar" id="navbar">
+  <a href="#home" class="logo" data-text="KH">
+    <span class="logo-main">KH</span><span class="logo-kana">壱</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home"><em>00</em>HOME</a></li>
+    <li><a href="#about"><em>01</em>ABOUT</a></li>
+    <li><a href="#skills"><em>02</em>SKILLS</a></li>
+    <li><a href="#experience"><em>03</em>WORK</a></li>
+    <li><a href="#projects"><em>04</em>PROJECTS</a></li>
+    <li><a href="#contact"><em>05</em>CONTACT</a></li>
+  </ul>
+  <a href="#contact" class="btn-sticker nav-cta">HIRE ME</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header id="home" class="hero">
+  <div class="speed-burst" Kartik-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="eyebrow mono"><span class="dot"></span> 起動中 // SYSTEM ONLINE</p>
+
+    <h1 class="hero-title">
+      <span class="hero-hello mono">&gt; ACCESSING PROFILE...</span>
+      <span class="glitch" data-text="KARTIK HEERA">KARTIK HEERA</span>
+    </h1>
+
+    <h2 class="hero-role">
+      <span class="typed-text" id="typedRole"></span><span class="cursor">_</span>
+    </h2>
+
+    <p class="hero-desc">
+      I build fast, resilient software for the systems running underneath everything else —
+      APIs, distributed backends, and interfaces that don't flinch under load.
+      Currently engineering scalable products and hunting down inefficiency wherever it hides.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#projects" class="btn-sticker btn-pink">VIEW PROJECTS</a>
+      <a href="/resume.pdf" class="btn-sticker btn-outline" download>DOWNLOAD RESUME</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num" data-count="4">0</span><span class="stat-suffix">+</span>
+        <span class="stat-label mono">YRS EXP</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="38">0</span><span class="stat-suffix">+</span>
+        <span class="stat-label mono">PROJECTS</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="12">0</span><span class="stat-suffix">M+</span>
+        <span class="stat-label mono">REQS / DAY</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue mono">SCROLL <span>↓</span></div>
+</header>
+
+<main>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section">
+    <p class="section-tag mono">01 // プロフィール — ABOUT</p>
+    <h2 class="section-title">The <span class="accent">source code</span> behind the resume.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a software engineer who likes systems that are honest about what they do —
+          clear contracts, predictable failure modes, and code that reads like documentation.
+          Over the last four years I've worked across the stack: designing APIs, tuning databases,
+          and shipping UI that doesn't fight the people using it.
+        </p>
+        <p>
+          Outside of production code, I spend time on performance profiling as a hobby,
+          contribute to a couple of open-source tooling projects, and keep a running log of
+          every outage I've ever caused (and fixed) — the best debugging notes I own.
+        </p>
+        <div class="about-meta">
+          <div><span class="mono label">LOCATION</span><span>Remote / Open to relocation</span></div>
+          <div><span class="mono label">FOCUS</span><span>Backend systems, distributed APIs, DevOps</span></div>
+          <div><span class="mono label">STATUS</span><span class="status-live">Available for hire</span></div>
+        </div>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-bar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="terminal-title mono">profile.json</span>
+        </div>
+        <pre class="terminal-body mono"><code>{
+  "name": "Kartik Heera",
+  "role": "Software Engineer",
+  "stack": ["Node.js", "Python", "Go"],
+  "languages": ["JS/TS", "Python", "SQL"],
+  "clouds": ["AWS", "GCP"],
+  "loves": "clean commits & fast builds",
+  "coffee_level": <span class="hl">"critical"</span>,
+  "open_to_work": <span class="hl-true">true</span>
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section section-alt">
+    <p class="section-tag mono">02 // 技術 — SKILLS</p>
+    <h2 class="section-title">Tools of the <span class="accent">trade</span>.</h2>
+
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h3 class="mono">LANGUAGES</h3>
+        <div class="skill-bar" data-level="92"><span class="skill-name">JavaScript / TypeScript</span><div class="bar"><i></i></div></div>
+        <div class="skill-bar" data-level="88"><span class="skill-name">Python</span><div class="bar"><i></i></div></div>
+        <div class="skill-bar" data-level="80"><span class="skill-name">Go</span><div class="bar"><i></i></div></div>
+        <div class="skill-bar" data-level="75"><span class="skill-name">SQL</span><div class="bar"><i></i></div></div>
+      </div>
+      <div class="skill-col">
+        <h3 class="mono">FRAMEWORKS &amp; TOOLS</h3>
+        <div class="skill-bar" data-level="90"><span class="skill-name">React / Next.js</span><div class="bar"><i></i></div></div>
+        <div class="skill-bar" data-level="85"><span class="skill-name">Node.js / Express</span><div class="bar"><i></i></div></div>
+        <div class="skill-bar" data-level="78"><span class="skill-name">Docker / Kubernetes</span><div class="bar"><i></i></div></div>
+        <div class="skill-bar" data-level="82"><span class="skill-name">PostgreSQL / Redis</span><div class="bar"><i></i></div></div>
+      </div>
+      <div class="skill-col">
+        <h3 class="mono">PLATFORMS &amp; PRACTICES</h3>
+        <div class="skill-bar" data-level="86"><span class="skill-name">AWS</span><div class="bar"><i></i></div></div>
+        <div class="skill-bar" data-level="70"><span class="skill-name">GCP</span><div class="bar"><i></i></div></div>
+        <div class="skill-bar" data-level="88"><span class="skill-name">CI/CD Pipelines</span><div class="bar"><i></i></div></div>
+        <div class="skill-bar" data-level="84"><span class="skill-name">System Design</span><div class="bar"><i></i></div></div>
+      </div>
+    </div>
+
+    <div class="tag-cloud">
+      <span>GraphQL</span><span>REST</span><span>Microservices</span><span>Kafka</span>
+      <span>Terraform</span><span>Linux</span><span>Jest</span><span>Webpack/Vite</span>
+      <span>MongoDB</span><span>Nginx</span><span>Git</span><span>Agile/Scrum</span>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience" class="section">
+    <p class="section-tag mono">03 // 経歴 — WORK LOG</p>
+    <h2 class="section-title">Where the <span class="accent">commits</span> happened.</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="mono timeline-date">2023 — PRESENT</span>
+          <h3>Senior Software Engineer <span class="mono company">@ Nexora Systems</span></h3>
+          <ul>
+            <li>Led migration of a monolith to microservices, cutting average API latency by 42%.</li>
+            <li>Designed an internal event-driven pipeline processing 12M+ requests/day.</li>
+            <li>Mentored a team of 4 engineers and established the org's code review standard.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="mono timeline-date">2021 — 2023</span>
+          <h3>Software Engineer <span class="mono company">@ Bramble Labs</span></h3>
+          <ul>
+            <li>Built and shipped a customer-facing dashboard used by 20k+ monthly active users.</li>
+            <li>Reduced CI pipeline runtime from 18 minutes to 6 through build parallelization.</li>
+            <li>Owned the payments integration service end-to-end, from design to on-call.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="mono timeline-date">2020 — 2021</span>
+          <h3>Junior Developer <span class="mono company">@ Fen &amp; Co.</span></h3>
+          <ul>
+            <li>Developed internal tooling that automated manual QA checks, saving ~10 hrs/week.</li>
+            <li>Contributed across frontend and backend in a fast-moving 6-person team.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section section-alt">
+    <p class="section-tag mono">04 // 開発 — PROJECTS</p>
+    <h2 class="section-title">Selected <span class="accent">builds</span>.</h2>
+
+    <div class="project-grid">
+      <article class="project-card">
+        <div class="project-head">
+          <span class="mono">./pulse-api</span>
+          <span class="project-status mono">v2.3</span>
+        </div>
+        <p>A real-time analytics API built on Go and Kafka, streaming event data to dashboards with sub-100ms latency.</p>
+        <div class="project-tags"><span>Go</span><span>Kafka</span><span>Redis</span></div>
+        <div class="project-links">
+          <a href="#" class="mono">SOURCE →</a>
+          <a href="#" class="mono">LIVE DEMO →</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-head">
+          <span class="mono">./gridwatch</span>
+          <span class="project-status mono">v1.0</span>
+        </div>
+        <p>A self-hosted infrastructure monitoring tool with custom alerting rules and a Grafana-style dashboard UI.</p>
+        <div class="project-tags"><span>TypeScript</span><span>Docker</span><span>Postgres</span></div>
+        <div class="project-links">
+          <a href="#" class="mono">SOURCE →</a>
+          <a href="#" class="mono">LIVE DEMO →</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-head">
+          <span class="mono">./cipherform</span>
+          <span class="project-status mono">v1.4</span>
+        </div>
+        <p>An end-to-end encrypted form builder for teams collecting sensitive user data, with client-side key management.</p>
+        <div class="project-tags"><span>React</span><span>Node.js</span><span>WebCrypto</span></div>
+        <div class="project-links">
+          <a href="#" class="mono">SOURCE →</a>
+          <a href="#" class="mono">LIVE DEMO →</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-head">
+          <span class="mono">./nightshift</span>
+          <span class="project-status mono">v0.9</span>
+        </div>
+        <p>A CLI tool that schedules and runs data pipeline jobs with dependency graphs, retries, and Slack alerting.</p>
+        <div class="project-tags"><span>Python</span><span>SQLite</span><span>Click</span></div>
+        <div class="project-links">
+          <a href="#" class="mono">SOURCE →</a>
+          <a href="#" class="mono">LIVE DEMO →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section id="education" class="section">
+    <p class="section-tag mono">05 // 学歴 — EDUCATION</p>
+    <h2 class="section-title">Root <span class="accent">directory</span>.</h2>
+    <div class="edu-card">
+      <div>
+        <h3>B.Tech in Computer Science</h3>
+        <span class="mono">RAYAT BAHRA PROFESSIONAL UNIVERSITY — 2022 – 2026</span>
+      </div>
+      <p>Focused on distributed systems, data structures, and operating systems. Graduated with honors.</p>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section section-alt contact-section">
+    <p class="section-tag mono">06 // 連絡 — CONTACT</p>
+    <h2 class="section-title">Let's <span class="accent">connect()</span>.</h2>
+    <p class="contact-sub">Open to full-time roles, freelance work, and interesting problems. Reach out below.</p>
+
+    <div class="contact-grid">
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <label class="mono" for="name">NAME</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="email">EMAIL</label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+        </div>
+        <div class="form-row">
+          <label class="mono" for="message">MESSAGE</label>
+          <textarea id="message" name="message" rows="5" placeholder="Let's build something..." required></textarea>
+        </div>
+        <button type="submit" class="btn-sticker btn-pink">SEND MESSAGE</button>
+        <p class="form-status mono" id="formStatus"></p>
+      </form>
+
+      <div class="contact-links">
+        <a href="mailto:kartikheera594@example.com" class="contact-link">
+          <span class="mono">EMAIL</span>
+          <span>kartikheera594@example.com</span>
+        </a>
+        <a href="https://github.com/KartikHeera" target="_blank" rel="noopener" class="contact-link">
+          <span class="mono">GITHUB</span>
+          <span>github.com/KartikHeera</span>
+        </a>
+        <a href="https://www.linkedin.com/in/kartik-heera-171a91323/" target="_blank" rel="noopener" class="contact-link">
+          <span class="mono">LINKEDIN</span>
+          <span>linkedin.com/in/kartikheera</span>
+        </a>
+        <a href="#" class="contact-link">
+          <span class="mono">LOCATION</span>
+          <span>Remote — Open to relocation</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p class="mono">© <span id="year"></span> Kartik Heera — BUILT WITH HTML, CSS &amp; JS.</p>
+  <p class="mono footer-blink">END_OF_FILE // 終</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
