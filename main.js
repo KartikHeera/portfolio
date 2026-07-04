@@ -304,40 +304,78 @@
    FOOTER YEAR
 ========================================================= */
 document.getElementById('year').textContent = new Date().getFullYear();
-const dot = document.querySelector(".cursor-dot");
-const outline = document.querySelector(".cursor-outline");
+/* ==========================================
+   ONE PIECE STRAW HAT CURSOR
+========================================== */
 
-window.addEventListener("mousemove", e => {
+const hat = document.querySelector(".cursor-hat");
+const glow = document.querySelector(".cursor-glow");
 
-    dot.style.left = e.clientX + "px";
-    dot.style.top = e.clientY + "px";
+if (hat && glow) {
 
-    outline.animate({
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
 
-        left: e.clientX + "px",
-        top: e.clientY + "px"
+    let glowX = mouseX;
+    let glowY = mouseY;
 
-    },{
+    // Move hat instantly
+    document.addEventListener("mousemove", (e) => {
 
-        duration:250,
-        fill:"forwards"
+        mouseX = e.clientX;
+        mouseY = e.clientY;
 
-    });
-
-});
-
-document.querySelectorAll("a,button").forEach(el=>{
-
-    el.addEventListener("mouseenter",()=>{
-
-        outline.classList.add("cursor-hover");
+        hat.style.left = mouseX + "px";
+        hat.style.top = mouseY + "px";
 
     });
 
-    el.addEventListener("mouseleave",()=>{
+    // Smooth glow follows cursor
+    function animateGlow() {
 
-        outline.classList.remove("cursor-hover");
+        glowX += (mouseX - glowX) * 0.18;
+        glowY += (mouseY - glowY) * 0.18;
+
+        glow.style.left = glowX + "px";
+        glow.style.top = glowY + "px";
+
+        requestAnimationFrame(animateGlow);
+
+    }
+
+    animateGlow();
+
+    // Hover animation
+    document.querySelectorAll("a, button, .btn-sticker, input, textarea").forEach(el => {
+
+        el.addEventListener("mouseenter", () => {
+            hat.classList.add("cursor-hover");
+        });
+
+        el.addEventListener("mouseleave", () => {
+            hat.classList.remove("cursor-hover");
+        });
 
     });
 
-});
+    // Click animation
+    document.addEventListener("mousedown", () => {
+        hat.classList.add("cursor-click");
+    });
+
+    document.addEventListener("mouseup", () => {
+        hat.classList.remove("cursor-click");
+    });
+
+    // Hide cursor when mouse leaves window
+    document.addEventListener("mouseleave", () => {
+        hat.style.opacity = "0";
+        glow.style.opacity = "0";
+    });
+
+    document.addEventListener("mouseenter", () => {
+        hat.style.opacity = "1";
+        glow.style.opacity = "0.8";
+    });
+
+}
