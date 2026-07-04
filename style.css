@@ -306,7 +306,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .hero-title { line-height: 1; }
 
-..glitch{
+.glitch{
     position:relative;
     display:inline-block;
 
@@ -656,4 +656,71 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 480px) {
   .glitch { font-size: 2.2rem; }
   .hero { padding-top: 120px; }
+}
+/* Hide default cursor */
+body{
+    cursor:none;
+}
+
+/* Small center dot */
+.cursor-dot{
+    width:10px;
+    height:10px;
+    background:#00ffff;
+
+    position:fixed;
+    left:0;
+    top:0;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    z-index:99999;
+
+    box-shadow:
+        0 0 10px #00ffff,
+        0 0 20px #00ffff;
+}
+
+/* Outer glowing ring */
+.cursor-outline{
+
+    width:38px;
+    height:38px;
+
+    border:2px solid #ff00ff;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    transition:
+        width .2s,
+        height .2s;
+
+    z-index:99998;
+
+    box-shadow:
+        0 0 15px #ff00ff,
+        0 0 30px #ff00ff;
+}
+
+/* Hover effect */
+.cursor-hover{
+
+    width:60px;
+    height:60px;
+
+    border-color:#00ffff;
+
 }

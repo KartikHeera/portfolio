@@ -304,3 +304,40 @@
    FOOTER YEAR
 ========================================================= */
 document.getElementById('year').textContent = new Date().getFullYear();
+const dot = document.querySelector(".cursor-dot");
+const outline = document.querySelector(".cursor-outline");
+
+window.addEventListener("mousemove", e => {
+
+    dot.style.left = e.clientX + "px";
+    dot.style.top = e.clientY + "px";
+
+    outline.animate({
+
+        left: e.clientX + "px",
+        top: e.clientY + "px"
+
+    },{
+
+        duration:250,
+        fill:"forwards"
+
+    });
+
+});
+
+document.querySelectorAll("a,button").forEach(el=>{
+
+    el.addEventListener("mouseenter",()=>{
+
+        outline.classList.add("cursor-hover");
+
+    });
+
+    el.addEventListener("mouseleave",()=>{
+
+        outline.classList.remove("cursor-hover");
+
+    });
+
+});
