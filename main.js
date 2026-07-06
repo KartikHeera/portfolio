@@ -1,8 +1,58 @@
 /* =========================================================
+   CUSTOM CYBERPUNK CURSOR
+========================================================= */
+(function customCursor() {
+  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+  if (!isFinePointer) return;
+
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  if (!dot || !ring) return;
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let ringX = mouseX;
+  let ringY = mouseY;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+  });
+
+  // smooth trailing ring
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // enlarge ring over interactive elements
+  const hoverTargets = 'a, button, input, textarea, .skill-bar, .project-card, .contact-link';
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(hoverTargets)) ring.classList.add('is-hovering');
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(hoverTargets)) ring.classList.remove('is-hovering');
+  });
+
+  document.addEventListener('mousedown', () => ring.classList.add('is-clicking'));
+  document.addEventListener('mouseup', () => ring.classList.remove('is-clicking'));
+
+  document.addEventListener('mouseleave', () => {
+    dot.style.opacity = '0';
+    ring.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    dot.style.opacity = '1';
+    ring.style.opacity = '1';
+  });
+})();
+
+/* =========================================================
    ANIMATED ANIME-CYBERPUNK BACKGROUND (canvas)
-   - Perspective grid "digital horizon"
-   - Falling katakana / glyph rain (pink + cyan)
-   - Occasional glitch flash
 ========================================================= */
 (function initBackground() {
   const canvas = document.getElementById('bg-canvas');
@@ -26,7 +76,6 @@
   let flashTimer = 0;
   let flashAlpha = 0;
 
-  // katakana + symbol rain
   const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ0123456789#$%&';
   const columns = [];
   function setupColumns() {
@@ -49,14 +98,12 @@
     const hz = horizonY();
     ctx.save();
 
-    // glow band near horizon
     const grad = ctx.createLinearGradient(0, hz - 160, 0, hz + 10);
     grad.addColorStop(0, 'rgba(123,47,247,0)');
     grad.addColorStop(1, 'rgba(255,32,121,0.10)');
     ctx.fillStyle = grad;
     ctx.fillRect(0, hz - 160, w, 170);
 
-    // horizon line
     ctx.strokeStyle = 'rgba(255,32,121,0.6)';
     ctx.lineWidth = 1.5;
     ctx.shadowColor = 'rgba(255,32,121,0.85)';
@@ -67,7 +114,6 @@
     ctx.stroke();
     ctx.shadowBlur = 0;
 
-    // perspective verticals
     const vanishX = w / 2;
     const spread = w * 0.95;
     const lineCount = 16;
@@ -82,7 +128,6 @@
       ctx.stroke();
     }
 
-    // moving horizontal grid rows below horizon
     const rows = 14;
     for (let j = 0; j < rows; j++) {
       const t = (j + (gridOffset % 1)) / rows;
@@ -113,9 +158,7 @@
 
       const nearHorizon = col.y > hz - 60 && col.y < hz + 40;
       const alpha = nearHorizon ? 0.55 : 0.18;
-      ctx.fillStyle = col.pink
-        ? `rgba(255,32,121,${alpha})`
-        : `rgba(23,242,255,${alpha})`;
+      ctx.fillStyle = col.pink ? `rgba(255,32,121,${alpha})` : `rgba(23,242,255,${alpha})`;
       ctx.fillText(col.char, col.x, col.y);
     });
   }
@@ -161,10 +204,10 @@
   const el = document.getElementById('typedRole');
   if (!el) return;
   const roles = [
-    'Software Engineer',
-    'Backend & API Specialist',
-    'Full-Stack Developer',
-    'Distributed Systems Enthusiast'
+    'B.Tech CSE Student',
+    'Aspiring Software Engineer',
+    'Java Developer',
+    'Software Analyst (Fresher)'
   ];
   let roleIndex = 0, charIndex = 0, deleting = false;
 
@@ -200,9 +243,7 @@
   const links = document.getElementById('navLinks');
 
   window.addEventListener('scroll', () => {
-    navbar.style.borderBottomColor = window.scrollY > 40
-      ? 'rgba(255,32,121,0.5)'
-      : 'var(--border)';
+    navbar.style.borderBottomColor = window.scrollY > 40 ? 'rgba(255,32,121,0.5)' : 'var(--border)';
   });
 
   toggle.addEventListener('click', () => {
@@ -237,7 +278,7 @@
 })();
 
 /* =========================================================
-   SKILL BARS: animate width on reveal
+   SKILL BARS
 ========================================================= */
 (function skillBars() {
   const bars = document.querySelectorAll('.skill-bar');
@@ -283,20 +324,49 @@
 })();
 
 /* =========================================================
-   CONTACT FORM (front-end only demo handling)
+   CONTACT FORM — submits to Formspree so messages land in
+   your real inbox. Replace YOUR_FORM_ID in index.html first.
 ========================================================= */
 (function contactForm() {
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (form.action.includes('YOUR_FORM_ID')) {
+      status.textContent = '> form not connected yet — replace YOUR_FORM_ID in index.html with your Formspree form ID.';
+      status.className = 'form-status mono error';
+      return;
+    }
+
     status.textContent = '> transmitting message...';
-    setTimeout(() => {
-      status.textContent = '> message sent. I\'ll respond within 24-48 hrs.';
-      form.reset();
-    }, 900);
+    status.className = 'form-status mono pending';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        status.textContent = "> message sent. I'll respond within 24-48 hrs.";
+        status.className = 'form-status mono success';
+        form.reset();
+      } else {
+        status.textContent = '> something went wrong. Please try again or email me directly.';
+        status.className = 'form-status mono error';
+      }
+    } catch (err) {
+      status.textContent = '> network error. Please try again or email me directly.';
+      status.className = 'form-status mono error';
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 })();
 
@@ -304,78 +374,3 @@
    FOOTER YEAR
 ========================================================= */
 document.getElementById('year').textContent = new Date().getFullYear();
-/* ==========================================
-   ONE PIECE STRAW HAT CURSOR
-========================================== */
-
-const hat = document.querySelector(".cursor-hat");
-const glow = document.querySelector(".cursor-glow");
-
-if (hat && glow) {
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-
-    let glowX = mouseX;
-    let glowY = mouseY;
-
-    // Move hat instantly
-    document.addEventListener("mousemove", (e) => {
-
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-
-        hat.style.left = mouseX + "px";
-        hat.style.top = mouseY + "px";
-
-    });
-
-    // Smooth glow follows cursor
-    function animateGlow() {
-
-        glowX += (mouseX - glowX) * 0.18;
-        glowY += (mouseY - glowY) * 0.18;
-
-        glow.style.left = glowX + "px";
-        glow.style.top = glowY + "px";
-
-        requestAnimationFrame(animateGlow);
-
-    }
-
-    animateGlow();
-
-    // Hover animation
-    document.querySelectorAll("a, button, .btn-sticker, input, textarea").forEach(el => {
-
-        el.addEventListener("mouseenter", () => {
-            hat.classList.add("cursor-hover");
-        });
-
-        el.addEventListener("mouseleave", () => {
-            hat.classList.remove("cursor-hover");
-        });
-
-    });
-
-    // Click animation
-    document.addEventListener("mousedown", () => {
-        hat.classList.add("cursor-click");
-    });
-
-    document.addEventListener("mouseup", () => {
-        hat.classList.remove("cursor-click");
-    });
-
-    // Hide cursor when mouse leaves window
-    document.addEventListener("mouseleave", () => {
-        hat.style.opacity = "0";
-        glow.style.opacity = "0";
-    });
-
-    document.addEventListener("mouseenter", () => {
-        hat.style.opacity = "1";
-        glow.style.opacity = "0.8";
-    });
-
-}

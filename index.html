@@ -288,7 +288,7 @@
     <p class="contact-sub">Open to full-time roles, freelance work, and interesting problems. Reach out below.</p>
 
     <div class="contact-grid">
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mbdvwnod" method="POST">
         <div class="form-row">
           <label class="mono" for="name">NAME</label>
           <input type="text" id="name" name="name" placeholder="Jane Smith" required>
@@ -301,7 +301,9 @@
           <label class="mono" for="message">MESSAGE</label>
           <textarea id="message" name="message" rows="5" placeholder="Let's build something..." required></textarea>
         </div>
-        <button type="submit" class="btn-sticker btn-pink">SEND MESSAGE</button>
+        <input type="hidden" name="_subject" value="New message from your portfolio site">
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="btn-sticker btn-pink" id="submitBtn">SEND MESSAGE</button>
         <p class="form-status mono" id="formStatus"></p>
       </form>
 
@@ -333,14 +335,8 @@
   <p class="mono footer-blink">END_OF_FILE // 終</p>
 </footer>
 
-<!-- Straw Hat Cursor -->
-<div class="cursor-hat">
-    <img src="images/strawhat.png" alt="Straw Hat">
-</div>
-
-<div class="cursor-glow"></div>
-
 <script src="main.js"></script>
-
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-outline" id="cursorRing"></div>
 </body>
 </html>
