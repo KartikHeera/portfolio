@@ -333,8 +333,15 @@
   const submitBtn = document.getElementById('submitBtn');
   if (!form) return;
 
+  // Sound played the instant Send is clicked.
+  const sendSound = new Audio('steam-achievement.mp3');
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Play immediately on click, before any network request or validation runs.
+    sendSound.currentTime = 0;
+    sendSound.play().catch(() => {});
 
     if (form.action.includes('YOUR_FORM_ID')) {
       status.textContent = '> form not connected yet — replace YOUR_FORM_ID in index.html with your Formspree form ID.';
