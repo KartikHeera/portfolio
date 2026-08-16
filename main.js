@@ -334,7 +334,7 @@
   if (!form) return;
 
   // Sound played the instant Send is clicked.
-  const sendSound = new Audio('gunshot-one.mp3');
+  const sendSound = new Audio('SteamAchievement.wav');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
