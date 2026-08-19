@@ -334,7 +334,7 @@
   if (!form) return;
 
   // Sound played the instant Send is clicked.
-  const sendSound = new Audio('message-sent.mp3');
+  const sendSound = new Audio('SteamAchievemnt.wav');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
